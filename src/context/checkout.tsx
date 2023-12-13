@@ -307,9 +307,9 @@ export const CheckoutProvider = (props: {
     setFieldValue('cost', checkoutData?.checkout?.amount || checkoutRequest?.checkoutRequest?.amount, false)
     setFieldValue('tipAmount', checkoutData?.checkout?.tip || checkoutRequest?.checkoutRequest?.tip, false)
     setFieldValue('tipType', checkoutData?.checkout?.tipType || checkoutRequest?.checkoutRequest?.tipType || config.tipType, false)
-    setFieldValue('fee', checkoutData?.checkout?.fee || checkoutRequest?.checkoutRequest?.fee || config.fee, false)
-    setFieldValue('feeType', checkoutData?.checkout?.feeType || checkoutRequest?.checkoutRequest?.feeType || config.feeType, false)
-    setFieldValue('feeMethod', checkoutData?.checkout?.feeMethod || checkoutRequest?.checkoutRequest?.feeMethod || config.feeMethod, false)
+    setFieldValue('fee', checkoutData?.checkout?.fee || checkoutRequest?.checkoutRequest?.fee || 0, false)
+    setFieldValue('feeType', checkoutData?.checkout?.feeType || checkoutRequest?.checkoutRequest?.feeType || 'percent', false)
+    setFieldValue('feeMethod', checkoutData?.checkout?.feeMethod || checkoutRequest?.checkoutRequest?.feeMethod || 1, false)
     setFieldValue('password', '', false)
   }, [checkoutRequest, checkoutData, user, setFieldValue])
 
