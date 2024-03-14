@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMemo } from "react";
 import PhoneInput from 'react-phone-number-input';
+import { useNavigate } from "react-router-dom";
 
-import { useCheckout } from "../context/checkout";
 import { stateList } from "../constants/state";
+import { useCheckout } from "../context/checkout";
 
-export const CoinFellaInformation = () => {
+export const OotwInformation = () => {
   const navigate = useNavigate();
 
   const { checkoutInfo } = useCheckout()
@@ -111,7 +111,7 @@ export const CoinFellaInformation = () => {
               value={values.state}
               onBlur={() => setFieldTouched('state', true)}
               onChange={(e) => setFieldValue('state', e.target.value)}
-              className="bg-transparent placeholder-white text-lg outline-none w-full" placeholder="State"
+              className="bg-transparent placeholder-white text-lg outline-none w-full"
             >
               <option className='text-black' value="">State</option>
               {stateList.map((state) => <option className='text-black' key={state.value} value={state.value}>{state.value}</option>)}

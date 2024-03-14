@@ -1,14 +1,13 @@
-import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { CoinFellaSignup } from "./singup";
 import { useCheckout } from "../context/checkout";
-import { CoinFellaKYC } from "./kyc";
+import { OotwKYC } from "./kyc";
+import { OotwSignup } from "./signup";
 
-export const CoinFellaSignupRouter = () => {
+export const OotwSignupRouter = () => {
   const { user } = useCheckout()
 
   return <Routes>
-    <Route path="/*" element={user ? <Navigate to={"../kyc"} replace /> : <CoinFellaSignup />} />
-    <Route path="/kyc" element={!user ? <Navigate to={"../"} replace /> : <CoinFellaKYC />} />
+    <Route path="/*" element={user ? <Navigate to={"../kyc"} replace /> : <OotwSignup />} />
+    <Route path="/kyc" element={!user ? <Navigate to={"../"} replace /> : <OotwKYC />} />
   </Routes>
 }

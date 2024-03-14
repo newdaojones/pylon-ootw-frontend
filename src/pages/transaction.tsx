@@ -1,21 +1,24 @@
-import React, { useEffect, useMemo } from "react";
-import _ from 'lodash';
 import moment from 'moment-timezone';
-import { toast } from "react-toastify";
+import { useEffect, useMemo } from "react";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ClockLoader from 'react-spinners/ClockLoader';
+import { toast } from "react-toastify";
 
-import { useCheckout } from "../context/checkout";
-import { calcTip } from "../utils";
 import UsFlagImage from '../assets/images/us-flag.png';
 import VisaIcon from '../assets/images/visa-icon.png';
+import { useCheckout } from "../context/checkout";
+import { calcTip } from "../utils";
+import useTrackPaymentSuccess from "../utils/useTrackPaymentSuccess";
 const explorerUri = process.env.REACT_APP_EXPLORER_URL || 'https://mumbai.polygonscan.com'
 
-export const CoinFellaTransaction = () => {
+export const OotwTransaction = () => {
   const { checkoutInfo, transaction, checkoutRequest, onRetry } = useCheckout()
   const { values } = checkoutInfo
   const tipAmount = useMemo(() => calcTip(values), [values]);
   const subTotal = useMemo(() => (Number(values.cost || 0) + tipAmount).toFixed(2), [values, tipAmount])
+
+  // Custom hook to track successful payment to then fire meta ad pixel
+  useTrackPaymentSuccess(transaction?.paidStatus);
 
   useEffect(() => {
     if (checkoutRequest?.checkoutRequest && transaction) {
